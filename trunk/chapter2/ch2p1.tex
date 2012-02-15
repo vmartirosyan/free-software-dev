@@ -1,0 +1,59 @@
+% Chapter 2. Section 1.
+
+\chapter{Free development tools}
+To start the development of a free software one should first know what kind of free tools are available to help in this. For example there are lots of editors, IDEs, compilers, automation tools some of which are free, some are not. Let us have a look at all these kinds of tools and see which of them are convenient for our case.
+
+\section{Which editor to use}
+\label{editor}
+Let's  start with the most common thing - the text editor. People who usually work on Windows platform do not deal with text editors in the software development process. There we have very powerful IDEs which provide all the necessary functionality. In case of free software development in GNU/Linux world we have much more options. First of all there are two major kinds of text editors: text-mode and graphical-mode. Let's see what can they provide to us.
+
+\subsection{Text-mode editors}
+Sometimes you have no graphical environment available while working on a GNU/Linux station. Usually you have a remote shell and that's it. In that case the only way is using text-mode editors. Fortunately there is a good variety of editors which do not require graphical subsystem to be loaded. But still, they provide a great user interface, including text highlighting.
+
+\textbf {GNU Emacs} is one of the oldest text-mode editors used by the software developers. It was started in 1984 by Richard Stallman as a free replacement of the Emacs editor. Later it became the real Emacs editor for all Unix systems, replacing the original Emacs. The GNU Emacs Manual calls Emacs the extensible, customizable, self-documenting real-time display editor. For a really deep introduction to the GNU Emacs visit it's official site: http://www.gnu.org/software/emacs.
+
+Some of the main features still will be described here. 
+
+\textit {GNU Emacs is multilangual}. The support of multiple languages is not limited to human languages. Yes, GNU Emacs supports many of human languages, but it also supports scripting and programming languages. This kind of support is realized as syntax highlighting, partial support for compilation commands, e.t.c.
+
+\textit {GNU Emacs can debug}. Of course this does not mean, that there is an internal debugger developed in GNU Emacs. There is a great debugger developed by GNU - the GNU Debugger (gdb). And GNU Emacs has a good integration with gdb. You can load, run, step into, and step out, watch expressions, and do all the basic debugging things through GNU Emacs.
+
+\textit {GNU Emacs is a comparer}. You can see differences between two files. It is a common task in software development process: developers usually compare different versions of the same source file to see what have been changed, and it is really great to be able to do that without any need to switch to another application.
+
+\textit {GNU Emacs can use internet}. No, it doesn't mean you can browse web-pages using GNU Emacs, but you can have access to news, mail and RSS feeds via GNU Emacs.
+
+\textit {You can play in GNU Emacs}. This is one of the most exotic features GNU Emacs provides. You can play "Tetris" implemented right inside the editor.
+
+Of course, the reader should understand, that the more features a text-mode editor provides, the more complicated it's user interface must be. This statement is very reasonable for the GNU Emacs. To get some feature activated users should execute some commands pressing Alt+x and typing in the command. For example to execute the "Tetris" game user should press Alt+x, type in "tetris" and press <Enter>.
+
+\textbf{Vim} Is another multi-functional text-mode editor usually used by the software developers. It's name is an acronym to "Vi Improved". In fact Vim is an improved version of another text editor called Vi. The editor itself and any documentation can be found on it's official cite: http://www.vim.org. Meanwhile we'll go through some if it's main features.
+
+\textit {Be careful with modes}. Vim can work in several modes: normal, insert, command, search and visual. In normal mode, users can navigate through text, remove some parts, but cannot insert new contents. For this purpose there is another mode - the insert mode. To switch to this mode users should press the "i" key. After this Vim becomes a normal text editor in insert mode (there exists another mode, called "overwrite" usually). To execute any Vim command press the <ESC> key, type in the ":" key followed by the command. To search something type in "/" and then type in the word you are searching for. In the visual mode the text can be selected. To switch to this mode from normal mode press the "v" key.
+
+\textit {Encodings can be set}. Vim supports several text encodings. To switch to another encoding typein ":set encoding=<encoding\_here>". 
+
+\textbf {mcedit} is the text editor built-in into the Midnight Commander - a very power file manager application. Every details concerning the Midnight Commander (usually called just "mc") can be found on it's official site: http://www.midnight-commander.org. The editor (mcedit) can be executed pressing the <F4> button from mc on any file (of course it's a mater of configuration if mc will execute it's built-in editor, or something external).
+
+Coming to the mcedit, first of all we should mention, that it has a blue background with a user menu at the bottom. It makes the use of the editor much comfortable. Besides it, the user can have the feeling of a graphical editor.
+
+It's features include syntax highlighting for many languages, macros, code snippets, simple integration with external tools, automatic indentation, mouse support, clipboard and the ability to work in both ASCII and hex modes.
+
+It allows selecting, copying, pasting and deleting the selection quite easily. Probably it is the most comfortable text-mode editor among the listed editors here.
+
+\textbf {Other editors}. Here are some of non-widely used text-based editors: nano, pico, Joe's own editor, ne, jupp.
+
+\subsection{Graphical-mode editors}
+Of course when the graphical subsystem is available, no one uses text-mode editors. It's much easier to have the mouse enabled, to be able to select text and drag the selection just by clicking and moving the mouse instead of the complicated key combinations suggested by the editors listed above.
+
+\textbf{Vim} and \textbf{Emacs} have also their graphical versions. They provide all the features listed above plus the advantages of the graphical user interface. Besides them there are several editors which provide only graphical user interface.
+
+\textbf{gedit} is a lightweight simple text editor, which supports programming and markup languages. It usually comes with the GNOME desktop and is the default editor there. gedit also supports plugins which make available spell checking, integration of external applications. For the complete set of features and full documentation on gedit visit it's official site: http://projects.gnome.org/gedit.
+
+\textbf{SciTE} is a Scintilla based text editor, which is really good for source code editing. It supports syntax highlighting, search and replace with regular expressions, code folding. For a complete documentation please visit: http://www.scintilla.org/SciTE.html.
+
+\subsection{Good and bad editors}
+Now we know that there are really different ways of getting the source code written in GNU/Linux systems. How can a software developer choose the correct one? Saying the correct text editor we mean the most comfortable. Well, if you have the graphical subsystem enabled then the best solution would be using Emacs in graphical mode. If the graphics are not the case then the more preferable choice would be the mcedit editor (if you have mc installed). Otherwise probably Emacs would be the choice here too.
+
+But wait, what about all those great text editors the reader could be familiar with? Those really great, full of features, with nice icons, e.t.c.? We did not even discuss them as most of them would not be free software. The editors listed here are published either under GPL, or under a GPL-compatible license. So they all can be thought as free software. One of the main purposes of this is is not just to teach about free software development but also to support the free software movement in any possible ways. One of those ways is the free software propagation.
+
+When a software developer starts using free software the free software community has some income. When a developer finds a bug in the free software, he knows what to do with it. He can fix the bug and commit the changes. He can even add some new features to the software, he can fork a new software upon the original one and we'll have something new in the free software world. That's why in this book we'll talk only about free tools. Get used to them.
