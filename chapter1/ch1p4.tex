@@ -1,0 +1,28 @@
+
+
+\section{GNU/Linux, not just Linux}
+\label{gnu_linux}
+Most of the users call it Linux, meanwhile it's GNU/Linux. Well, let's see what the Linux is and why is it so important?
+
+\subsection{What is Linux}
+
+As we already know the GNU kernel is called HURD. GNU has initiated the Hurd project in 1990 but did not bring it to final production state. Fortunately in 1991 a Finnish student started a new operating system kernel development which would be (what a match!) compatible with POSIX. So there was no need of own kernel development for GNU any more. The student is Linus Torvalds and the system is known as \textbf {Linux}. 
+
+So what does the kernel provide to the other components of the operating system? In fact its the kernel which makes possible interaction with the hardware. Kernel is the part of operating system which always runs in privileged mode. It is resistantly loaded into the memory (cannot be swapped out). Kernel passes data back and forth from the user processes and drivers to the hardware. Kernel provides a set of interrupt handlers to get data from devices and processes it. 
+
+Besides the input/output operations the kernel contains several subsystems like task scheduler, memory manager, process manager. File systems are usually realized separately. It's the kernel which allocates memory for both user processes and drivers. The kernel makes processes run and switch between each other. It makes possible the interaction between different user processes and drivers.
+
+The kernel provides an API (Application Programming Interface) both to the user-level processes and to the drivers. As we have already mentioned Linux provides the POSIX interface to the user-level processes. It's really a great feature as it makes possible compilation and execution of software which is developed for UNIX (thus using POSIX interface). Besides the user-level interface kernel usually provides a complete driver interface also. It contains own memory allocation, I/O operations, inter-driver communication subroutines and data types etc..
+
+\subsection{GNU + Linux =}
+So, putting this all together we come to the conclusion, that Linux made GNU a complete operating system. Now we have a fully functional kernel with quite a large set of device drivers and a cute POSIX interface - Linux. We have all the rest of the system in the GNU project. If we do not need any graphical interface then we can stop here.
+
+Otherwise we take the X.Org Server (or any of it's replacements like Wayland) and add a desktop environment (e.g. GNOME or KDE, or whatever you prefer). It's almost enough for an operating system with graphical user interface. Then the missing part is the software to run on the system.
+
+Fortunately there is a lot of free (and non-free too) software which can be run on such a system. Part of these software is still developed by the GNU developer community. But there are also applications from other providers.
+
+All the mentioned components are brought together by the distribution makers. Some of the most popular GNU/Linux distributions are Ubuntu, SuSE, RedHat, Fedora, Debian. 
+
+
+\subsection{Call it GNU/Linux!}
+Here we come to one of the biggest problems in the GNU/Linux world - how should we call that system? People usually call it Linux. Not everyone knows what Linux exactly is (we know that it's just the kernel). This question brings up to numerous debates between Richard Stallman and Linus Torvalds. But the truth is the following: Linux is just one of the kernels of the GNU system. So one may not call the whole system just Linux. Call it \textbf {GNU/Linux}. Along this book we shall try to stay fair to this statement, but if somewhere along the text you meet the term "Linux", where it should be "GNU/Linux", then read it as "GNU/Linux" (and let me know about that mistype).

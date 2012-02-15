@@ -1,0 +1,60 @@
+% Chapter 2. Section 4.
+
+\section{Building complicated projects - GNU Make}
+\label{make}
+It's quite easy to build a single file even if it depends on some libraries or whatever. It's just a single file. You can always execute the compiler and get the result. but what if you deal with bigger projects? What if you'll have to build several hundreds or thousands files at one? How you will set the correct build order, define the dependencies, etc. Here a very powerful tool comes to the scene : the \textbf {GNU Make} utility.
+
+\subsection{What is a project}
+Saying a software project we usually assume not just a folder containing source files, but also some logic bound to those files. Every serious IDE provides a project manager which allows to add or remove files from the project, change project settings, like configuration (Debug or Release), output file names and locations, compiler custom options, etc. This all is quite comfortable for them who is not planning to be a free software developer. In GNU/Linux and free software world you usually will not use any power featured IDE with not less powerful project manager. Instead of that you will probably have a shell, a text-mode editor, a compiler and a set of helper utilities to build your project. To be able to manage such case we shall have a close look at the entity of project and it's build process.
+
+\subsection{Dependencies, build order, etc.}
+\label{deps_order_etc}
+To build a whole project first you need to build all it's components with some order. This order comes because of the logical dependencies between the project modules. For example if you have a class defined in it's separate file and a module which instantiates that class you should have the class file built before the mentioned module.
+
+So, let's say we have main program file called {\tt main.cpp} which deals with a class defined in {\tt myclass.hpp } and {\tt myclass.cpp } files. Obviously there is a dependency between these files: {\tt main.cpp } depends on both {\tt myclass.hpp } and {\tt myclass.cpp } and even more: {\tt myclass.cpp } depends on {\tt myclass.hpp }. It makes us to to the following build order: {\tt myclass.hpp }, {\tt myclass.cpp }, {\tt main.cpp }.
+
+As you probably know C/C++ header files are not to be built. They are usually just included into source files by the preprocessor. So we don't need to build it separately. Remaining two files should be built in the given order. This means we must bring them to the object form first and then pass them to the linker. It can be achieved executing the following commands:
+
+\begin{lstlisting}[numbers=none]
+g++ -c class.cpp 
+g++ -c main.cpp  
+g++ class.o main.o
+\end{lstlisting}
+
+Of course this is the most complicated method to build several files. In fact there is no need to generate the object file {\tt main.o} before the last build command. The last two commands could be combined into the following one:
+
+\begin{lstlisting}[numbers=none]
+g++ class.o main.cpp
+\end{lstlisting}
+
+{\remark In fact the same result could be achieved via a single build command {\tt g++ class.cpp main.cpp}. This solution is acceptable for small file counts. If there are several thousand files which can contain errors this command is not acceptable.}
+
+Now let's say there is a syntax error in the {\tt class.cpp} file. This means that the {\tt class.o} file will not be generated. And the main build command is not correct to execute. Before the last command execution the developer must check for the successful end of the first one. When there are just two files it's quite easy to do manually. But we'll always keep in mind that real projects usually consist of thousands of files.
+
+\subsection{Writing a shell script}
+Now we'll discuss the first and not the best method for build process automation. As all the build commands are executed by the shell, we can combine them into a shell script. Shell scripts are executable files (thus having the execute bit set in permission flags) the first line of which has the following command:
+
+\begin{lstlisting}[numbers=none]
+#! /path/to/interpreter
+\end{lstlisting}
+
+where {\tt /path/to/interpreter} shows the location of the program which "understands" the remaining of the file. In the listing below you can find a very simple way to automate the build process of the project discussed in \ref{deps_order_etc}.
+
+\lstinputlisting[label=build_sample,caption=Sample build shell script,language=bash]{Sources/chapter2/build_sample.sh}
+
+This shell script does some basic checks not to rebuild already existing object file, but it also contains errors. If someone modifies the source file and does not remove the object files the script will not rebuild them. So this script is to be improved a lot to really satisfy all the needs. A good shell script specialist can create a script which will handle all the possible cases, but it may have about a hundred lines and a quite complicated logic flow.
+
+\subsection{The GNU Make}
+GNU Make utility is exactly what software developers need to build complicated projects with the least effort. It is both a language and it's interpreter. The language syntax is quite simple. There are three key entities in make files: \textit {targets, dependencies} and \textit {commands}. Make program by default searches for files named \textit {makefile} or \textit {Makefile} in the current folder. Alternatively you can change both the folder where the project is situated and the file name which contains make instructions.
+
+\subsubsection{Recursive build logic}
+Let us discuss a very basic makefile presented in the listing \ref{makefile_1}.
+\lstinputlisting[label=makefile_1,caption=First makefile,language=make]{Sources/chapter2/makefile1}
+
+Here the terms {\tt all, print.o, clean} and {\tt .PNOHY} are said to be \textit {targets}. Target is something that needs to be built. They usually depend on something (files or sub-targets). Right after the colon symbols comes the listing of the current target \textit{dependencies}. To be able to build the target make needs to ensure that the dependencies are already there. If they are not (for example at the first build there will be no {\tt class.o} file in the project folder) then make will try to build them first. And here the recursive logic of the build process comes in. To be able to build any of the sub-targets make needs to have their dependencies and in case of need it builds them first and so on.
+
+There are several targets that have system meaning or are common to be declared in the make files. Usually there is a target called {\tt all}. It defines how the whole project can be built. By default make tries to build the {\tt all} target. Usually along with it there are the following targets in the make files: {\tt clean, install, uninstall}. They are designated for removing generated object or binary files, installing and uninstalling the project respectively.
+	
+	\subsubsection{Variables}
+	
+	\subsubsection{Advanced constructions}

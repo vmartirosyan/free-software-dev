@@ -1,0 +1,48 @@
+\section{The GNU operating system}
+\label{gnu}
+
+The first biggest free project was the GNU operating system. It was the first step to the freedom in software world that's why free software developers need to know that system. Now days the GNU project include not only the operating system components but also a huge set of free software designed to be used in very different spheres of computer world (text editor, image editor, compiler, IDE, software libraries, e.t.c.). Besides that the most widely used free software license - GPL - is also developed by Richard Stallman (see \ref{gpl}).
+
+\subsection{What is an operating system}
+\label{os}
+
+To understand the rest of this section let's have a deeper look at the entity of operating system. The term has several definitions depending on the point of view. From computer users point of view the operating system is "something" which must be installed to make the computer useful (to allow execution of applications). From system developers point of view the operating system is exactly what he is creating. They have no access to any commonly used libraries and tools and they make everything on their own. It's the hardest job in the software development world. And in the middle of those two are application developers. The operating system provides three kinds of functionality to them.
+
+First: operating system provides a virtual machine. Of course at last all the operations are handled by the hardware. But now days application developers don't need and even cannot have access to the hardware. Instead of that they deal with the virtual machine provided by the operating system. There the developers can find virtual display, virtual keyboard, e.t.c. The application developers do not need to know the exact model of the keyboard from which they want to input some data. All they need is the way how it can be accessed via the operating system.
+
+Second: operating system acts as a resource manager. As a resource we can think of the hardware resources like the CPU, memory, I/O ports. Operating systems usually provide another kind of resources - the operating system objects. The set usually includes threads, synchronization primitives (mutexes, semaphores, ...), graphical objects (device contexts, pens, brushes, ...) e.t.c. These objects are controlled by the operating system but can be used by the application developers to solve their problems.
+
+Third: operating system provides application programming interface (API). All the great features the operating system provides can be accessed via the API. APIs usually contain one or two thousands of functions which allow software developers to cover the set of all the possible needs they may have. Operating system APIs can be divided into several sections like process manipulation, thread manipulation, synchronization, interprocess communication, graphical and others. Some of the operating systems have developed their own APIs, meanwhile there is a large set of operating systems which realize the same API - POSIX (Portable Operating System Interface for UNIX). Such an approach allows application developers to create portable applications easily.
+
+Some examples of widely used operating systems are UNIX, GNU/Linux distributions, Windows, Mac OS, DOS. These are desktop operating systems. They are designated for everyday use, they usually provide graphical user interface. Besides the desktop systems there are batch and real-time operating systems. Each of these types are designed for certain set of problems.
+
+\subsection{GNU: GNU's Not Unix}
+Now when we know what the operating system is, let's see what GNU is. Everything started because of a printer. Mr. Stallman found out that he cannot modify the firmware of a printer, because it was not free. That problem brought him to the idea that there is almost no freedom in the software world. He decided to solve that problem developing a new and free operating system. In those early days UNIX with its several modifications were the dominating operating systems. He decided to develop a UNIX-compatible operating system (thus based on POSIX interface). That's how the name of the system came - GNU: GNU's Not Unix. This is an recursive acronym meaning that GNU is somehow related to UNIX, but it is not the same. In fact, all the UNIX applications can run on GNU system (thus they are compatible), but GNU is free unlike UNIX.
+
+Starting since 1983 much time has passed and the GNU system is still growing. Of course operating systems are too big to be developed by a single developer. As time is passing the GNU developers' community is growing. Now days GNU is not just an operating system, but also a great system with a large variety of useful tools and software in it.
+
+\subsection{Main components of GNU system}
+
+When the system starts some startup subsystem is executed. In case of GNU it is a program called \textbf{"init"}. It runs the startup scripts of the corresponding runlevel and initializes the virtual terminals. In those terminals some shells are executing waiting for the user commands.
+
+Operating systems usually provide one or more shells which allow users to interact with the system. In fact in all the UNIX-like systems shell is the main user interface. There usually is no graphical one and most of time users work on the shells. That's why there is such a wide variaty of shells implemented in different UNIX-like systems.
+
+GNU of course has it's own shell - \textbf {BASH: Bourne-again shell}. It was developed as a shell which would be compatible with sh - the UNIX shell. In fact bash has much more features and is more powerful. Now days in almost all the GNU/Linux distribution bash is the default shell.
+
+After the shell is successfully loaded users can log into the system and start working. Most of the commands executed by the users are not exact shell commands. Users usually execute programs not getting into details if it's a shell command or a program. UNIX and all the UNIX-like systems usually provide a large set of small tools each of which perform a concrete small task. Good examples of such tools are cp, ls, ps. In separate each of them is not very useful but the trick is that they can be combined into pipelines which can do already a large amount of work. For example users can get the listing of a directory and search for a particular word in the listing combining the ls and grep tools like this: ls | grep "someword". The possibility of creating pipelines from small tools makes UNIX-like systems very powerful. 
+
+GNU as a UNIX-like system contains all that tools. Of course in UNIX all of them were non-free. Mr. Stallman and the other GNU developers had to implement all those tools (hundreds of them) as free software. Now GNU provides all the 
+features that UNIX does.
+
+Besides the mentioned tools and utilities the GNU system contains other kind of things like compiler, debugger, IDE, make, auto tools e.t.c. All these make GNU not just another operating system, but a system for software developers. One can find almost anything necessary for developing software of any kind of sophistication starting with the "hello world" sample and ending with huge projects like operating systems.
+
+Besides the console tools GNU contains one of the world's most popular desktop environments - GNOME: GNU Network Object Model Environment. It is a complete desktop system with support of all the possible UI elements and controls like windows, panels, toolbars, buttons, menus e.t.c. It also contains applets which can provide a very large variety of possible features starting with application launchers to the clock+weather applet. GNOME has it's own configuration tools for many subsystems like NetworkManager.
+
+\subsection{Is there something missing?}
+
+Anyway, there is something still missing in the set of GNU components. HURD - the GNU kernel is still in development stage. Developers faced quite a lot of problems during the development process and at the end we have a different kernel for the GNU system (see \ref {gnu_linux} for details). 
+
+The GNU system does not have a complete graphical user interface. Of course it contains the GNOME desktop, but the graphical subsystem - the X Window System - is not a part of GNU. The X Window System is currently implemented by the X.Org Foundation. It's implementation is known as X.Org Server. Currently it's the most widely used graphics system in GNU/Linux distributions.
+
+
+ 

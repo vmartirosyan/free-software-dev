@@ -1,0 +1,112 @@
+\documentclass[unicode, 12pt, a4paper, doubleside]{book}		
+% Mirrors the output
+%\usepackage[mirror]{crop}
+\usepackage[xetex]{hyperref}
+%\usepackage[russian,english]{babel}
+%\usepackage[cm-default]{fontspec}
+%\defaultfontfeatures{Mapping=tex-text}
+    %% устанавливает поведение шрифтов по умолчанию
+%\usepackage[armenian,russian,english]{polyglossia}
+    %% подключает пакет многоязыкой верстки	
+%\setdefaultlanguage{russian}
+    %% устанавливает язык по умолчанию
+%\setmainfont{DejaVu Serif}  
+%\setmainfont{Free Sans}  
+	%% задаёт основной шрифт документа
+\linespread{1.3}\normalsize
+\usepackage{graphicx}
+
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{courier}	
+\usepackage[large]{caption}
+
+\usepackage{textcomp}
+
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{24cm}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\topmargin}{0in}
+
+\clubpenalty=10000
+\widowpenalty=10000
+
+\newfontface \armfont [Script=Armenian]{Sylfaen}
+\def \ARMENIAN #1{{\armfont #1}}
+
+\renewcommand{\subsectionmark}[1]{}
+
+%\renewcommand{\@evenhead}%
+%{\vbox{\hbox to\textwidth{\thepage \hfil \centering{\normalfont\slshape \leftmark} \hfil}\smallskip\hrule}}
+
+%\renewcommand{\@oddhead}{\vbox{\hbox to\textwidth{\hfil \centering{\normalfont\slshape\rightmark} \hfil \thepage}\smallskip\hrule}}
+
+%\newtheorem{definition}{Определение}[section]
+%\newtheorem{theorem}{Теорема}[section]
+%\newtheorem{lemma}{Лемма}[section]
+%\newtheorem{remark}{Замечание}[section]
+%\newtheorem{example}{Пример}[section]
+%\renewcommand{\bibname}{Литература}
+%\renewcommand{\chaptername}{Глава}
+%\renewcommand{\contentsname}{С\,О\,Д\,Е\,Р\,Ж\,А\,Н\,И\,Е}
+%\renewcommand{\baselinestretch}{1.6}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}{Example}[section]
+\renewcommand{\bibname}{Literature}
+\renewcommand{\chaptername}{Chapter}
+\renewcommand{\contentsname}{C\,O\,N\,T\,E\,N\,T\,S}
+
+\lstset{
+         basicstyle=\normalsize\rmfamily, % Standardschrift
+         numbers=left,               % Ort der Zeilennummern
+         numberstyle=\normalsize,          % Stil der Zeilennummern
+         %stepnumber=2,               % Abstand zwischen den Zeilennummern
+         numbersep=5pt,              % Abstand der Nummern zum Text
+         tabsize=2,                  % Groesse von Tabs
+         %extendedchars=true,         %
+         breaklines=true,            % Zeilen werden Umgebrochen
+         keywordstyle=\color{blue},
+		 %keywordstyle=\color{black},
+		 frame=none,
+%         frame=b, 
+ %        keywordstyle=[1]\textbf,    % Stil der Keywords
+ %        keywordstyle=[2]\textbf,    %
+ %        keywordstyle=[3]\textbf,    %
+ %        keywordstyle=[4]\textbf,   \sqrt{\sqrt{}} %
+         stringstyle=\color{green}\rmfamily, % Farbe der String
+		 %stringstyle=\color{black}\rmfamily, % Farbe der String
+         showspaces=false,           % Leerzeichen anzeigen ?
+         showtabs=false,             % Tabs anzeigen ?
+         xleftmargin=17pt,
+         framexleftmargin=17pt,
+         framexrightmargin=5pt,
+         framexbottommargin=4pt,
+         %backgroundcolor=\color{lightgray},
+         showstringspaces=false      % Leerzeichen in Strings anzeigen ?        
+ }
+ \lstloadlanguages{% Check Dokumentation for further languages ...
+         %[Visual]Basic
+         %Pascal
+         C,
+		 %Assembler,
+         C++,
+         XML
+		 %makefile
+         %HTML
+         %Java
+ }
+   %\DeclareCaptionFont{gray}{\color{gray}} 
+   \DeclareCaptionFont{gray}{\color{black}} 
+
+  \captionsetup[lstlisting]{singlelinecheck=false, labelfont={gray}, textfont={gray}}
+  %\captionsetup[lstlisting]{singlelinecheck=false, labelfont={black}, textfont={black}}
+  
+%\DeclareCaptionFont{white}{\color{white}}
+\DeclareCaptionFormat{listing}{\parbox{\textwidth}{\hspace{15pt}#1#2#3}}
+\captionsetup[lstlisting]{format=listing,labelfont=gray,textfont=gray, singlelinecheck=false, margin=0pt, font={bf,normalsize}}

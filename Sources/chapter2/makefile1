@@ -1,0 +1,10 @@
+all: main.cpp class.o
+		g++ -g -o main class.o main.cpp
+
+class.o: class.cpp class.hpp
+		g++ -g -c class.cpp
+
+clean:
+		rm *.o main
+
+.PHONY: all clean
