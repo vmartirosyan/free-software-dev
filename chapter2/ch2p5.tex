@@ -1,10 +1,8 @@
 % Chapter 2. Section 5.
 
-\section{Automating everything - GNU autotools}
+\section{Automating everything - CMake}
 \label{autotools}
 
-\subsection{Autoconfigure}
+As we already mentioned makefiles are usually really large to be created by hand. That's why software developers use tools that automate makefile generation process. That phase of software building is called {\tt configuration}. During the configuration phase the configurator (a single tool or a tool set) collects all the necessary information and does all the necessary checks. For example it checks if the compiler is there, finds out it's name, searches for particular versions of necessary libraries, finds some system paths, and processes project's configuration files. After that phase makefiles are generated using some templates or some raw makefiles. 
 
-\subsection{Automake}
-
-\subsection{Autoreconf}
+One of such automation tool sets is GNU Autotools.
