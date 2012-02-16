@@ -1,0 +1,5 @@
+CC = gcc
+CFLAGS = -g -c -o class.o 
+
+all: class.cpp
+		$(CC) class.cpp $(CFLAGS)
