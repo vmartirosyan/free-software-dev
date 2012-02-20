@@ -5,4 +5,18 @@
 
 As we already mentioned makefiles are usually really large to be created by hand. That's why software developers use tools that automate makefile generation process. That phase of software building is called {\tt configuration}. During the configuration phase the configurator (a single tool or a tool set) collects all the necessary information and does all the necessary checks. For example it checks if the compiler is there, finds out it's name, searches for particular versions of necessary libraries, finds some system paths, and processes project's configuration files. After that phase makefiles are generated using some templates or some raw makefiles. 
 
-One of such automation tool sets is GNU Autotools.
+One of such automation tool sets is GNU Autotools. It contains several tools: {\tt Autoconf, Automake, Libtool.} 
+
+GNU Autoconf deals with a file named {\tt configure.ac}. As a result we get a script file called {\tt configure}. That script later must be executed by the user. It processes all the Makefile.in files and generates the corresponding Makefiles.
+
+GNU Automake processes Makefile.am files and creates the portable Makefile.in files. Later these files are being processed by the {\tt configure} script. After all the configuration steps are finished, the project can be build using GNU Make utility.
+
+Of course GNU Autotools are really great in doing their job. But still there is another tool which would be more convenient for the software developers. It's the {\bf CMake - Cross-Platform Makefile Generator} tool. All the necessary information on using this tool and the tool itself can be found on their official web site: {\tt www.cmake.org}. CMake, regardless it's name, is a configuration tool. It must be executed as a first step of the software build process. As output it can generate makefiles or project files depending on the platform. 
+
+To use the CMake tool in all the folders of the project a file must be added named {\tt CMakeLists.txt}. These files should contain the configuration commands and settings for the CMake tool.
+
+\subsection {Using CMake}
+Let's consider a project having a little bit complicated structure: {\tt root folder, bin, include, lib} and {\tt src} folders. The source files are situated in the {\tt src} folder, include files are in the {\tt include} folder. During the build process all the library files must be generated in the {\tt lib} folder and all the executable files must be stored in the {\tt bin} folder. In the listing \ref {cmake} there is a CMakeLists.txt file presented, which must be located in the project root folder to satisfy our needs concerning the build process.
+
+\lstinputlisting[label=cmake ,caption=Using CMake,language=make]{Sources/chapter2/CMakeLists.txt}
+
