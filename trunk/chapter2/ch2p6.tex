@@ -2,9 +2,19 @@
 
 \section{Debugger}
 \label{debugger}
+Almost no software is there without error in it. Usually developers spend more time finding out the problems and fixing them than developing the software. There are several ways to do it. One may go through the source code and try to find the error by hand, one would add trace output and analyze the trace. But still the most convenient way is to {\bf debug}.
 
 \subsection{What is a debugger}
+Debugger is a program which allows developers to find errors in other programs. There are debuggers for programming languages, scripting languages, database query languages like SQL. Using the debugger it is possible to watch the program execution step by step. The program execution can be suspended at some certain point or depending on some expression value. All the variables and register values can be examined through the debuggers. All these features make debuggers an irreplaceable tool for the software development. There are many debuggers available for free software developers. The most popular and most powerful of them would be the {\bf GNU Debugger: GDB}. Documentation about the GDB and the project itself can be found on the project's official site: {\tt www.gnu.org/software/gdb}.
+
+\subsection{Embedding debug information}
+Usually programs cannot be decoded to the source code on any high level language like "C". The highest available language via the reverse engineering is the assembly language. Unfortunately the assembly language is not convenient for debugging the program. That's why the compilers usually allow developers to embed some debug information into the program. That information also contains the source code of the program. Debuggers can use that information to allow the developers to debug the program. 
+
+The GCC compiler also may allow developers to embed debugging information into the compiled program files. To enable debugging one should use the following command:
+
+{\tt g++ -g my\_prog.cpp -o my\_prog}
 
 \subsection{Using GDB}
+Let's see how GDB can be used to debug a certain program. 
 
 \subsection{Graphical wrappers for GDB}
