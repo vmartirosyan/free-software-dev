@@ -11,7 +11,7 @@ Saying a software project we usually assume not just a folder containing source 
 \label{deps_order_etc}
 To build a whole project you need to build all it's components with some certain order. This order comes because of the logical dependencies between the project modules. For example if you have a class defined in it's separate file and a module which instantiates that class you should have the class file built before the mentioned module.
 
-So, let's say we have main program file called {\tt main.cpp} which deals with a class defined in {\tt myclass.hpp } and {\tt myclass.cpp } files. Obviously there is a dependency between these files: {\tt main.cpp } depends on both {\tt myclass.hpp } and {\tt myclass.cpp } and even more: {\tt myclass.cpp } depends on {\tt myclass.hpp }. It makes us to to the following build order: {\tt myclass.hpp }, {\tt myclass.cpp }, {\tt main.cpp }.
+So, let's say we have main program file called \textit { main.cpp} which deals with a class defined in \textit { myclass.hpp } and \textit { myclass.cpp } files. Obviously there is a dependency between these files: \textit { main.cpp } depends on both \textit { myclass.hpp } and \textit { myclass.cpp } and even more: \textit { myclass.cpp } depends on \textit { myclass.hpp }. It makes us to to the following build order: \textit { myclass.hpp }, \textit { myclass.cpp }, \textit { main.cpp }.
 
 As you probably know C/C++ header files are not to be built. They are usually just included into source files by the preprocessor. So we don't need to build it separately. Remaining two files should be built in the given order. This means we must bring them to the object form first and then pass them to the linker. It can be achieved executing the following commands:
 
@@ -21,15 +21,15 @@ g++ -c main.cpp
 g++ class.o main.o
 \end{lstlisting}
 
-Of course this is the most complicated method to build several files. In fact there is no need to generate the object file {\tt main.o} before the last build command. The last two commands could be combined into the following one:
+Of course this is the most complicated method to build several files. In fact there is no need to generate the object file \textit { main.o} before the last build command. The last two commands could be combined into the following one:
 
 \begin{lstlisting}[numbers=none]
 g++ class.o main.cpp
 \end{lstlisting}
 
-{\remark In fact the same result could be achieved via a single build command {\tt g++ class.cpp main.cpp}. This solution is acceptable when there are not too many files to build. If there are several thousand files to be built this command is not acceptable.}
+{\remark In fact the same result could be achieved via a single build command \textit { g++ class.cpp main.cpp}. This solution is acceptable when there are not too many files to build. If there are several thousand files to be built this command is not acceptable.}
 
-Now let's say there is a syntax error in the {\tt class.cpp} file. This means that the {\tt class.o} file will not be generated. And the main build command cannot be executed. Before the last command execution the developer must check for the successful end of the first one. When there are just two files it's quite easy to do manually. But we'll always keep in mind that real projects usually consist of thousands of files.
+Now let's say there is a syntax error in the \textit { class.cpp} file. This means that the \textit { class.o} file will not be generated. And the main build command cannot be executed. Before the last command execution the developer must check for the successful end of the first one. When there are just two files it's quite easy to do manually. But we'll always keep in mind that real projects usually consist of thousands of files.
 
 \subsection{Writing a shell script}
 Now we'll discuss the first but not the best method for build process automation. As all the build commands are executed by the shell, we can combine them into a shell script. Shell scripts are executable files (thus having the execute bit set in permission flags) the first line of which has the following command:
@@ -38,7 +38,7 @@ Now we'll discuss the first but not the best method for build process automation
 #! /path/to/interpreter
 \end{lstlisting}
 
-where {\tt /path/to/interpreter} shows the location of the program which "understands" the remaining of the file. In the listing below you can find a very simple way to automate the build process of the project discussed in \ref{deps_order_etc}.
+where \textit { /path/to/interpreter} shows the location of the program which "understands" the remaining of the file. In the listing below you can find a very simple way to automate the build process of the project discussed in \ref{deps_order_etc}.
 
 \lstinputlisting[label=build_sample,caption=Sample build shell script,language=bash]{Sources/chapter2/build_sample.sh}
 
@@ -51,13 +51,13 @@ GNU Make utility is exactly what software developers need to build complicated p
 Let us discuss a very basic makefile presented in the listing \ref{makefile_1}.
 \lstinputlisting[label=makefile_1,caption=First makefile,language=make]{Sources/chapter2/makefile1}
 
-Here the terms {\tt all, print.o, clean} and {\tt .PNOHY} are said to be \textit {targets}. Target is something that needs to be built. They usually depend on something (files or sub-targets). Right after the colon symbols comes the listing of the current target \textit{dependencies}. To be able to build the target make needs to ensure that the dependencies are already there. If they are not (for example at the first build there will be no {\tt class.o} file in the project folder) then make will try to build them first. And here the recursive logic of the build process comes in. To be able to build any of the sub-targets make needs to have their dependencies and in case of need it builds them first and so on.
+Here the terms \textit { all, print.o, clean} and \textit { .PNOHY} are said to be \textit {targets}. Target is something that needs to be built. They usually depend on something (files or sub-targets). Right after the colon symbols comes the listing of the current target \textit{dependencies}. To be able to build the target make needs to ensure that the dependencies are already there. If they are not (for example at the first build there will be no \textit { class.o} file in the project folder) then make will try to build them first. And here the recursive logic of the build process comes in. To be able to build any of the sub-targets make needs to have their dependencies and in case of need it builds them first and so on.
 
-There are several targets that have system meaning or are common to be declared in the make files. Usually there is a target called {\tt all}. It defines how the whole project can be built. By default make tries to build the {\tt all} target. Usually along with it there are the following targets in the make files: {\tt clean, install, uninstall}. They are designated for removing generated object or binary files, installing and uninstalling the project respectively.
+There are several targets that have system meaning or are common to be declared in the make files. Usually there is a target called \textit { all}. It defines how the whole project can be built. By default make tries to build the \textit { all} target. Usually along with it there are the following targets in the make files: \textit { clean, install, uninstall}. They are designated for removing generated object or binary files, installing and uninstalling the project respectively.
 	
 Developers usually use variables to easy the coding process. There is support for variables in GNU Make also. One can create a variable with the following command:\\
-{\tt \$SomeVar = "Some Value"}. \\
-This line teels Make system to create a variable called {\tt SomeVar} and assign it the value {\tt "Some Value"}. Later that variable can be used instead of writing it's value as a literal. All the values that are being used along the makefiles are stored into variables. For example it's quite common to have variables {\tt \$CC} and {\tt \$CFLAGS} which contain the name of the C compiler and it's flags respectively.
+\textit { \$SomeVar = "Some Value"}. \\
+This line teels Make system to create a variable called \textit { SomeVar} and assign it the value \textit { "Some Value"}. Later that variable can be used instead of writing it's value as a literal. All the values that are being used along the makefiles are stored into variables. For example it's quite common to have variables \textit { \$CC} and \textit { \$CFLAGS} which contain the name of the C compiler and it's flags respectively.
 In the listing \ref {makefilevar} is presented a typic case of variable usage in GNU Make.
 
 \lstinputlisting[label=makefilevar ,caption=Makefile with variables,language=make]{Sources/chapter2/makefilevar}
